@@ -7,7 +7,7 @@ use \Psr\Log;
  * allow for the registration and dispatching of callables using events
  * @package Chevron\Hooks
  */
-class Hooks implements Log\LoggerAwareInterface {
+class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 
 	use Log\LoggerAwareTrait;
 
@@ -86,7 +86,7 @@ class Hooks implements Log\LoggerAwareInterface {
 	/**
 	 * get the current logger, defaults to NullLogger
 	 */
-	function getLogger(){
+	protected function getLogger(){
 		if(!$this->logger){
 			$this->logger = new Log\NullLogger;
 		}
