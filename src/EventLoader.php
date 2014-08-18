@@ -2,18 +2,17 @@
 
 namespace Chevron\Hooks;
 /**
- * A recursive service loader to parse a directory (recursivley) and load in PHP
- * file found. If the file returns a callable, it is called and passed a Deferred
- * container. Essentially, this class creates a Di, and loads it from a number of
- * service files. Each file should look like:
+ * A recursive event loader to parse a directory (recursivley) and load in PHP
+ * files found. If the file returns a callable, it is called and passed an instance
+ * of Hooks. Essentially, this class creates a Hooks, and loads it from a number of
+ * event files. Each file should look like:
  *
  * <?php
- * return function($di){
- *     $di->set("nameOne", $value);
- *     $di->set("nameTwo", function() use ($di){});
+ * return function($ev){
+ *     $ev->register("event.one", function(){  });
  * }
  *
- * $value can be a callback (for singleton connections etc.)
+ * $value must be a callback
  *
  * @package Chevron\Hooks
  */
