@@ -17,6 +17,11 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 	const FUNC_KEY = "func";
 
 	/**
+	 * the array key for the functions, to avoid strings
+	 */
+	const HOOK_STOP = 90053;
+
+	/**
 	 * map of events, functions, args
 	 */
 	protected $events = [];
@@ -44,7 +49,10 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 		if($handlers = $this->getHandlers($event)){
 			foreach ($handlers as $handler) {
 				// pass args to the event at the time of dispatch
-				call_user_func_array($handler[static::FUNC_KEY], $args);
+				$stop = call_user_func_array($handler[static::FUNC_KEY], $args);
+				if($stop == static::HOOK_STOP){
+					break;
+				}
 			}
 		}else{
 			$this->getLogger()->notice("No event handlers registered for event: '{$event}'.", []);
