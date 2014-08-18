@@ -17,11 +17,6 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 	const FUNC_KEY = "func";
 
 	/**
-	 * the array key for the functions' arguments, to avoid strings
-	 */
-	const ARGS_KEY = "args";
-
-	/**
 	 * map of events, functions, args
 	 */
 	protected $events = [];
@@ -30,13 +25,11 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 	 * add method(s) to an event, if the event doesn't exist, register it
 	 * @param string $event the event name
 	 * @param callable $handler a callable to execute when the event is dispatched
-	 * @param array $args optional arguments to pass to the callable
 	 * @return int
 	 */
-	function register($event, callable $handler, array $args = []){
+	function register($event, callable $handler){
 		$this->events[$event][] = [
-			static::FUNC_KEY => $handler,
-			static::ARGS_KEY => $args,
+			static::FUNC_KEY => $handler
 		];
 		return count($this->events[$event]);
 	}
@@ -45,11 +38,13 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 	 * execute all the events registered to an event, if the event doesn't exist
 	 * log a notice
 	 * @param string $event the event to dispatch
+	 * @param array $args optional arguments to pass to the callable
 	 */
-	function dispatch($event){
+	function dispatch($event, array $args = []){
 		if($handlers = $this->getHandlers($event)){
 			foreach ($handlers as $handler) {
-				call_user_func_array($handler[static::FUNC_KEY], $handler[static::ARGS_KEY]);
+				// pass args to the event at the time of dispatch
+				call_user_func_array($handler[static::FUNC_KEY], $args);
 			}
 		}else{
 			$this->getLogger()->notice("No event handlers registered for event: '{$event}'.", []);

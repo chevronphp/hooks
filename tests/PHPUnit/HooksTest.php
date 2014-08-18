@@ -26,9 +26,9 @@ class HooksTest extends \PHPUnit_Framework_TestCase {
 			$result = "{$arg1}, {$arg2}";
 		};
 
-		$count = $ev->register("test.event", $func, ["1234", "5678"]);
+		$count = $ev->register("test.event", $func);
 
-		$ev->dispatch("test.event");
+		$ev->dispatch("test.event", ["1234", "5678"]);
 
 		$expected = "1234, 5678";
 

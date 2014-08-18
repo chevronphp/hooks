@@ -14,7 +14,7 @@ interface HooksInterface {
 	 * @param array $args optional arguments to pass to the callable
 	 * @return int
 	 */
-	function register($event, callable $handler, array $args = []);
+	function register($event, callable $handler);
 
 	/**
 	 * execute all the events registered to an event, if the event doesn't exist
