@@ -1,8 +1,8 @@
 {
-	"name"        : "henderjon/chevron-hooks",
+	"name"        : "chevron/hooks",
 	"type"        : "library",
 	"description" : "an event hub and dispatcher",
-	"homepage"    : "http://github.com/henderjon/chevron.hooks",
+	"homepage"    : "http://github.com/chevronphp/hooks",
 	"license"     : "BSD-3-Clause",
 	"authors"     : [
 		{
@@ -15,9 +15,9 @@
 		"irc" : "irc://irc.freenode.org/henderjon"
 	},
 	"require": {
-		"php"                            : ">=5.4.0",
-		"psr/log"                        : "~1.0",
-		"henderjon/chevron-objectloader" : "~1.0"
+		"php"                 : ">=5.4.0",
+		"psr/log"             : "~1.0",
+		"chevron/objectloader": "~1.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
