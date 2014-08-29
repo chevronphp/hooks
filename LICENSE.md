@@ -1,4 +1,4 @@
-[![License](https://poser.pugx.org/henderjon/chevron-hooks/license.svg)](https://packagist.org/packages/henderjon/chevron-introspector)
+[![License](https://poser.pugx.org/chevron/hooks/license.svg)](https://packagist.org/packages/chevron/hooks)
 
 Copyright (c) 2012, Jon Henderson (@henderjon) All rights reserved.
 
