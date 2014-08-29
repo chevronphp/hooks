@@ -1,4 +1,4 @@
-# chevron.hooks
+# chevron/hooks
 
 An event hub and dispatcher.
 
