@@ -55,7 +55,9 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 				}
 			}
 		}else{
-			$this->getLogger()->notice("No event handlers registered for event: '{$event}'.", []);
+			if($this->logger InstanceOf Log\LoggerInterface){
+				$this->logger->notice("No event handlers registered for event: '{$event}'.", []);
+			}
 		}
 	}
 
@@ -84,16 +86,6 @@ class Hooks implements Log\LoggerAwareInterface, Interfaces\HooksInterface {
 		}
 
 		return $this->events[$event];
-	}
-
-	/**
-	 * get the current logger, defaults to NullLogger
-	 */
-	protected function getLogger(){
-		if(!$this->logger){
-			$this->logger = new Log\NullLogger;
-		}
-		return $this->logger;
 	}
 
 }
